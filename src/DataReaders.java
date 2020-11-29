@@ -1,10 +1,12 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class DataReaders {
-	//scanner to read the txt files of reader... people who are going to read the books
-		
+	ArrayList<Reader> readerlist = new ArrayList<Reader>();
+	
+	//scanner to read the txt files of reader... people who are going to read the books	
 	public DataReaders () {
 		try {
 			BufferedReader readersR = new BufferedReader(new FileReader("C:\\Users\\rita_\\Documents\\codes\\Library System\\src\\Readers.txt"));

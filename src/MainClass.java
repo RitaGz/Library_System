@@ -7,17 +7,15 @@ public class MainClass {
 
 //	Scanner input = new Scanner(System.in);
 
-	ArrayList<Book> booklist = new ArrayList<Book>();
-	ArrayList<Reader> readerlist = new ArrayList<Reader>();
-
-	String booksearch;
+	
 	String dataB;
 
 	public static void main(String[] args) {
 		// calling the constructors to print out in the console the books and/or the
 		// readers lists
-		new MainClass();
-//		new DataBooks();//prints the list of books
+//		new MainClass();
+		new DataBooks();//prints the list of books
+		
 //		System.out.println("\n");
 //		new DataReaders();//prints the list if readers		
 	}
@@ -66,8 +64,8 @@ public class MainClass {
     	 	            }
     	 	            
     	 	         }else {
-    	 	           System.out.print("Please, Try again");
-    	 	           System.out.println("\n");
+    	 	           System.out.print("Please, Try again" + "\n");
+    	 	           option = imput.nextInt();
     	 	           }
     	 	       
     	            
@@ -75,8 +73,8 @@ public class MainClass {
     	     	   System.out.println("Something went wrong");
     	        	}
     	        
-        	}while( userImput != 0);
-	    	
+        	}while( userImput == 0);
+	    	System.out.println("sorry, that option does not exist. Please, try again");
 	 }
 
 }

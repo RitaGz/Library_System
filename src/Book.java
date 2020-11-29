@@ -19,6 +19,7 @@ public class Book {
 
 	public String getNameBook() {
 		return nameBook;
+		//this is used in search title method
 	}
 
 	public String getAuthor() {
@@ -28,6 +29,7 @@ public class Book {
 	public String getGenre() {
 		return genre;
 	}
+	
 	
 
 }
