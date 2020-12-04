@@ -2,13 +2,13 @@
 public class Book {
 	// i created the books with attributes
 	private int ID;
-	private String nameBook;
-	private String author;
+	private  String bookName;
+	private  String author;
 	private String genre;
 	
-	public Book (int ID, String nameBook, String author, String genre) {
+	public Book (int ID, String bookName, String author, String genre) {
 		this.ID = ID;
-		this.nameBook = nameBook;
+		this.bookName = bookName;
 		this.author = author;
 		this.genre = genre;
 	}
@@ -17,8 +17,8 @@ public class Book {
 		return ID;
 	}
 
-	public String getNameBook() {
-		return nameBook;
+	public String getBookName() {
+		return bookName;
 		//this is used in search title method
 	}
 

@@ -3,26 +3,39 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 //import java.util.Scanner;
 import java.util.Collections;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class DataBooks {
+	/* this class does: reading books from file
+	 * searching by titles
+	 * and sort the books in alphabetic order
+	 */
+	ArrayList<Book> bookArray = new ArrayList<>();
+	ArrayList<Book> temporaryArray = new ArrayList<>();
 	
-	ArrayList<Book> booklist = new ArrayList<Book>();
-	String searchTitle() {
-		return null;
+	public DataBooks() {
+		loadBookD();
+		searchByTitle();
+		BubbleSortBook();
+		printArray(bookArray);
+//		ArrayList<Book> bookArray = loadBookD();
+
 	}
-	
-	public DataBooks () {
-		//scanner to read the txt files of books...
+	public ArrayList<Book> loadBookD () {
+		
+		//scanner to read the txt files of books...i couldn't use full path...
 			try {
 				BufferedReader bookReader = new BufferedReader(new FileReader("C:\\Users\\rita_\\Documents\\codes\\Library System\\src\\Books.txt"));
 				String contentBook = bookReader.readLine();
 				
-				String[] dataB;//create an array of string that is going to hold the dataB
-				
+				String[] dataB;//create an array of string that is going to hold the dataB		
 				int ID;
 				String nameBook;
 				String author;
@@ -38,32 +51,87 @@ public class DataBooks {
 		//so now i can print by name of the book and author
 //					System.out.println(nameBook + ", by " + author);
 					
-					System.out.println(contentBook); // prints the full list of books
+//					System.out.println(contentBook); // prints the full list of books
 //					System.out.println(dataB[0]); // it prints just the IDs at position 0
-//					System.out.println(dataB[1]); // it will print the names of the books
-					
+					System.out.println(dataB[1]); // it will print the names of the books
+//					System.out.println(dataB[2]);
+//					System.out.println(dataB[3]);
 					contentBook = bookReader.readLine();// read while there are lines to read
 				}
 				
 			 }catch (IOException e) {
+				Logger.getLogger(DataBooks.class.getName()).log(Level.SEVERE, null, e);
 				System.out.println("An error occurred.");
 			  }
+			return bookArray;
 	}
-	public String searchTitle(ArrayList<Book> booklist, String targetTitle) {
+	
+//searching by book title
+	public String searchByTitle() {
 		
-		String booksearch;
-		
-		System.out.println("Which book are you searching for today?");
-		Scanner bookInput = new Scanner(System.in);
-		booksearch = bookInput.nextLine();
-		
-		if (targetTitle == null) 
-	    	return "\n No Book Avaliable ";
-	    for(int i = 0; i < booklist.size(); i++){
-	        if(targetTitle.equalsIgnoreCase(booklist.get(i).getNameBook())){
-	            return targetTitle;
-	        }
-	    }
-	    return "\n No Books Avaliable "; //reachable only if no book found
+			System.out.println(" Please, enter the Book you are looking for: ");
+			Scanner bookInput = new Scanner(System.in);
+			String titleSearchInput = bookInput.nextLine();
+			
+		    if (titleSearchInput == null) 
+		    	//return "\n No Books Available ";
+		    	System.out.println("The book is not available");
+		    
+			    for(int i = 0; i < bookArray.size(); i++){
+			        if(titleSearchInput.equalsIgnoreCase(bookArray.get(i).getBookName())){
+	//		            return "\n Book Available";
+			        	System.out.println("The book: " + titleSearchInput + " is available");
+			        }
+			    }
+				return titleSearchInput;
+	////	    return "\n something went wrong, please try again"; //reachable only if no book found
+	//	    	titleSearchInput = bookInput.nextLine();
+		 
 	}
+	
+//	public ArrayList<Book> bookArray(){
+//		return bookArray ;
+//	}
+	
+	//sorting the objects inside book file by alphabetic order using bubble sort
+	public void BubbleSortBook() {
+		
+		String bookA;
+		String bookB;
+		
+		for(int i = 0; i < bookArray.size(); i++) {
+			for(int j = i+1; j < bookArray.size(); j++) { //j will be at one position ahead of i
+				bookA = bookArray.get(i).getBookName();//from the record at pos i get the object name there
+				bookB = bookArray.get(j).getBookName();
+				
+				if(bookA.compareToIgnoreCase(bookB) > 0) { //it compares one character against the other one
+			/* +1 if bookA > bookB -->that means swap them! because B comes after A in alfabetic order
+			 *  0 bookA and bookB would have the same value
+			 * -1 bookA < bookB they dont need to be swapped, because A comes before B 
+			 */
+					temporaryArray.add(bookArray.get(i));//adding the records to the temporary Array
+					bookArray.set(i, bookArray.get(j));// the swapping is with objects comparing the names
+					bookArray.set(j, temporaryArray.get(0));
+					temporaryArray.clear();
+					
+				}
+			}
+		}
+		System.out.println(bookArray);
+		
+	}
+	
+	public void printArray(ArrayList<Book> bookArray) {
+			
+			String toPrint = "[ ";
+			for (int i = 0; i < bookArray.size(); i++) {
+				toPrint += bookArray + " ";
+				
+			}
+			toPrint += "]";
+			System.out.println(toPrint);
+			
+		}
+	
 }
+

@@ -2,14 +2,14 @@
 public class Reader {
 	// i created the readers and their attributes
 	private int ID;
-	private String nameReader;
+	private String readerName;
 	private String surnameR;
 	private String address;
 	private int age;
 	
-	public Reader (int ID, String nameReader, String surnameR, String address, int age) {
+	public Reader (int ID, String readerName, String surnameR, String address, int age) {
 		this.ID =ID;
-		this.nameReader = nameReader;
+		this.readerName = readerName;
 		this.surnameR = surnameR;
 		this.address = address;
 		this.age = age;
@@ -20,8 +20,8 @@ public class Reader {
 		return ID;
 	}
 
-	public String getNameReader() {
-		return nameReader;
+	public String getReaderName() {
+		return readerName;
 	}
 	
 	public String getSurnameR() {
