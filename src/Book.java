@@ -1,20 +1,20 @@
 
 public class Book {
 	// i created the books with attributes
-	private int ID;
+	private int bookID;
 	private  String bookName;
 	private  String author;
 	private String genre;
 	
 	public Book (int ID, String bookName, String author, String genre) {
-		this.ID = ID;
+		this.bookID = ID;
 		this.bookName = bookName;
 		this.author = author;
 		this.genre = genre;
 	}
 	// i generated only getters, not setters because i'm not setting or changing any data
-	public int getID() {
-		return ID;
+	public int getBookID() {
+		return bookID;
 	}
 
 	public String getBookName() {

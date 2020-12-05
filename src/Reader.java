@@ -1,14 +1,14 @@
 
 public class Reader {
 	// i created the readers and their attributes
-	private int ID;
+	private int readerID;
 	private String readerName;
 	private String surnameR;
 	private String address;
 	private int age;
 	
 	public Reader (int ID, String readerName, String surnameR, String address, int age) {
-		this.ID =ID;
+		this.readerID =ID;
 		this.readerName = readerName;
 		this.surnameR = surnameR;
 		this.address = address;
@@ -16,8 +16,8 @@ public class Reader {
 		
 	}
 // i just generated getters, not setters because i'm not setting or changing any data
-	public int getID() {
-		return ID;
+	public int getReaderID() {
+		return readerID;
 	}
 
 	public String getReaderName() {

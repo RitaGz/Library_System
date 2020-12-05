@@ -22,8 +22,8 @@ public class DataBooks {
 	
 	public DataBooks() {
 		loadBookD();
-		searchByTitle();
-		BubbleSortBook();
+//		searchByTitle();
+		//BubbleSortBook();
 		printArray(bookArray);
 //		ArrayList<Book> bookArray = loadBookD();
 
@@ -48,12 +48,15 @@ public class DataBooks {
 					nameBook = dataB[1]; //nameBook at position 1
 					author = dataB[2]; // author at position 2
 					genre = dataB[3]; // genre at position 3
-		//so now i can print by name of the book and author
+	// creation of the instance of the Book with parameters...				
+					Book book = new Book(ID, nameBook, author, genre);
+					bookArray.add(book);
+ 		//so now i can print by name of the book and author
 //					System.out.println(nameBook + ", by " + author);
 					
 //					System.out.println(contentBook); // prints the full list of books
 //					System.out.println(dataB[0]); // it prints just the IDs at position 0
-					System.out.println(dataB[1]); // it will print the names of the books
+//					System.out.println(dataB[1]); // it will print the names of the books
 //					System.out.println(dataB[2]);
 //					System.out.println(dataB[3]);
 					contentBook = bookReader.readLine();// read while there are lines to read
@@ -68,7 +71,6 @@ public class DataBooks {
 	
 //searching by book title
 	public String searchByTitle() {
-		
 			System.out.println(" Please, enter the Book you are looking for: ");
 			Scanner bookInput = new Scanner(System.in);
 			String titleSearchInput = bookInput.nextLine();
@@ -84,21 +86,32 @@ public class DataBooks {
 			        }
 			    }
 				return titleSearchInput;
-	////	    return "\n something went wrong, please try again"; //reachable only if no book found
-	//	    	titleSearchInput = bookInput.nextLine();
 		 
 	}
-	
-//	public ArrayList<Book> bookArray(){
-//		return bookArray ;
-//	}
-	
+	public String searchByAuthor() {
+		System.out.println(" Please, enter the Author you are looking for: ");
+		Scanner authorInput = new Scanner(System.in);
+		String authorSearchInput = authorInput.nextLine();
+		
+	    if (authorSearchInput == null) 
+	    	//return "\n No Books Available ";
+	    	System.out.println("The book by this author is not available");
+	    
+		    for(int i = 0; i < bookArray.size(); i++){
+		        if(authorSearchInput.equalsIgnoreCase(bookArray.get(i).getAuthor()) ){
+//		            return "\n Book Available";
+		        	System.out.println("The book by: " + authorSearchInput + " is available");
+		        }
+		    }
+			return authorSearchInput;
+	 
+}
 	//sorting the objects inside book file by alphabetic order using bubble sort
 	public void BubbleSortBook() {
 		
 		String bookA;
 		String bookB;
-		
+
 		for(int i = 0; i < bookArray.size(); i++) {
 			for(int j = i+1; j < bookArray.size(); j++) { //j will be at one position ahead of i
 				bookA = bookArray.get(i).getBookName();//from the record at pos i get the object name there
@@ -114,24 +127,24 @@ public class DataBooks {
 					bookArray.set(j, temporaryArray.get(0));
 					temporaryArray.clear();
 					
+					printArray(bookArray); // it will print every time the array was sorted until the last sortting 
 				}
 			}
 		}
-		System.out.println(bookArray);
-		
 	}
 	
 	public void printArray(ArrayList<Book> bookArray) {
 			
 			String toPrint = "[ ";
 			for (int i = 0; i < bookArray.size(); i++) {
-				toPrint += bookArray + " ";
-				
+				toPrint = toPrint +  bookArray.get(i).getBookName() + ", ";
+			//	toPrint += bookArray.get(i).getBookName() + ", ";
 			}
 			toPrint += "]";
 			System.out.println(toPrint);
-			
-		}
+
+	}
+	
 	
 }
 
